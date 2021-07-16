@@ -13,7 +13,6 @@ import Button from "./Button/Button";
 const Home = () => {
   const { state, loading, error, searchTerm, setSearchTerm, setLoadMore } =
     useHomeFetch();
-  console.log(state);
 
   if (error) return <div>Something went wrong ...</div>;
 

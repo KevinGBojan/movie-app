@@ -2,11 +2,13 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   background-color: var(--darkGrey);
+  height: 8vh;
 `;
 
 export const Content = styled.div`
   max-width: calc(1280 / 1440 * 100%);
   margin: auto;
+  height: 8vh;
 `;
 
 export const LogoImg = styled.img`

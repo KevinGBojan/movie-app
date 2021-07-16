@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <Wrapper className="py-5">
+    <Wrapper>
       <Content className="flex items-center justify-between">
         <Link to="/">
           <LogoImg src={RMDBLogo} alt="rmdb logo" />
