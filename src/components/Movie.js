@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { POSTER_SIZE, IMAGE_BASE_URL } from "../config";
+import { POSTER_SIZE, IMAGE_BASE_URL, BACKDROP_SIZE } from "../config";
 import Grid from "./Grid/Grid";
 import Spinner from "./Spinner/Spinner";
 import noImage from "../assets/no_image.jpeg";
@@ -11,7 +11,9 @@ import ActorThumbnail from "../components/ActorThumbnail/ActorThumbnail";
 const Movie = () => {
   const { movieId } = useParams();
   const { state: movie, loading, error } = useMovieFetch(movieId);
-  console.log(movie.actors);
+
+  if (loading) return <Spinner />;
+  if (error) return <div>Something went wrong ...</div>;
   return (
     <>
       {movie && movie.directors && (
@@ -22,7 +24,16 @@ const Movie = () => {
             rating={`${movie.vote_average}`}
             directors={movie.directors.map((director) => director.name)}
             movieId={`${movie.id}`}
-            image={`${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`}
+            backdrop={
+              movie.backdrop_path
+                ? `${IMAGE_BASE_URL}${BACKDROP_SIZE}${movie.backdrop_path}`
+                : "#000"
+            }
+            image={
+              movie.poster_path
+                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                : noImage
+            }
             runtime={`${movie.runtime}`}
             revenue={`${movie.revenue}`}
             budget={`${movie.budget}`}
@@ -33,7 +44,7 @@ const Movie = () => {
                 key={actor.cast_id}
                 image={
                   actor.profile_path
-                    ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.poster_path}`
+                    ? `${IMAGE_BASE_URL}${POSTER_SIZE}${actor.profile_path}`
                     : noImage
                 }
                 name={actor.name}

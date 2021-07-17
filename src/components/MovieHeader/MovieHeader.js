@@ -1,6 +1,7 @@
 import React from "react";
 import Movie from "../Movie";
 import { calcTime, convertMoney } from "../../helpers";
+import { Link } from "react-router-dom";
 
 import {
   Wrapper,
@@ -20,6 +21,7 @@ const MovieHeader = ({
   runtime,
   revenue,
   budget,
+  backdrop,
 }) => {
   const convertedTime = calcTime(runtime);
   const convertedBudget = convertMoney(budget);
@@ -28,9 +30,15 @@ const MovieHeader = ({
   return (
     <>
       <Navigation>
-        <div className="flex items-center">Home | {title}</div>{" "}
+        <div className="flex items-center">
+          <Link to="/">
+            <span>Home</span>
+          </Link>
+          <span>|</span>
+          <span>{title}</span>
+        </div>
       </Navigation>
-      <Wrapper image={image}>
+      <Wrapper backdrop={backdrop}>
         <Container>
           <Poster image={image}></Poster>
           <Description>
@@ -45,9 +53,11 @@ const MovieHeader = ({
                 </div>
               </div>
               <div className="directors flex flex-col items-center">
-                <h5>Director</h5>
-                {directors.map((e) => (
-                  <p className="director">{e}</p>
+                <h5>Director{directors.length > 1 && "s"}</h5>
+                {directors.map((director) => (
+                  <p key={director.credit_id} className="director">
+                    {director}
+                  </p>
                 ))}
               </div>
             </div>

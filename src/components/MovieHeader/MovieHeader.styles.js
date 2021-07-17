@@ -11,6 +11,10 @@ export const Navigation = styled.div`
     margin: auto;
     height: 6vh;
   }
+
+  span {
+    padding-right: 10px;
+  }
 `;
 
 export const MoreInfo = styled.div`
@@ -41,19 +45,28 @@ export const MoreInfo = styled.div`
 
 export const Wrapper = styled.div`
   position: relative;
-  background: url(${(props) => props.image});
+  background: url(${(props) => props.backdrop});
   height: 86vh;
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-x: center;
-  background-position-y: 40%;
+  background-position: center;
+  animation: animateMovie 1s;
+
+  @keyframes animateMovie {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
 
 export const Container = styled.div`
   position: absolute;
   height: 80%;
   width: 80%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   border-radius: 1rem;
   margin-left: -40%;
@@ -89,6 +102,7 @@ export const Description = styled.div`
   .rating-and-director {
     margin-top: 1rem;
     width: 25%;
+    min-width: 200px;
 
     .rating {
       height: 20%;

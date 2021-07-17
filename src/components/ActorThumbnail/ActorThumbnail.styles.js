@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  border-radius: 2rem;
+  border-radius: 20px;
   background-color: var(--darkGrey);
-  height: 250px;
+  height: 300px;
+  padding: 5px;
 `;
 
 export const Image = styled.div`
-  border-radius: 2rem;
-  height: 66%;
-  width: 95%;
+  border-radius: 10px;
+  height: 75%;
+  width: 100%;
   margin: auto;
   background: url(${(props) => props.image});
   background-size: cover;
-  background-color: red;
+  background-position: center 20%;
+  background-repeat: no-repeat;
 `;
 
 export const Name = styled.div`
@@ -22,5 +24,15 @@ export const Name = styled.div`
   align-items: center;
   justify-content: center;
   color: white;
-  height: 34%;
+  height: 25%;
+
+  .actor-name {
+    font-weight: 600;
+    font-size: var(--fontMed);
+  }
+
+  .actor-character {
+    font-weight: 400;
+    font-size: var(--fontSmall);
+  }
 `;
